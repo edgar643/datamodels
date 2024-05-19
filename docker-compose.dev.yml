@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  frontend:
+   build: ./frontend
+   container_name: models_frontend
+   ports:
+    - 80:80
+   restart: always
+   env_file:
+    - "frontend.env"
+   networks:
+    - front-tier
+    - back-tier
+
+  backend:
+   build: ./backend
+   container_name: models_backend
+   ports:
+   - 5001:5001
+   restart: always
+   env_file:
+     - "backend.env"
+   networks:
+   - front-tier
+   - back-tier
+networks:
+  front-tier:
+  back-tier:
