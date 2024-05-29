@@ -1,6 +1,14 @@
 FROM node:lts-buster
 # Create app directory
 WORKDIR /usr/src/app
+RUN mkdir /logs
+VOLUME /logs
+ENV NODE_ENV=production
+# Create a volume logs
+VOLUME /logs
+ENV NODE_ENV=production
+ENV PORT=5001
+ENV AWS_REGION=us-east-1
 # Copy dependency definitions
 COPY package.json ./package.json
 COPY package-lock.json ./package-lock.json
