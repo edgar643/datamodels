@@ -16,26 +16,26 @@ const PORT = process.env.PORT;
 app.use(cors());
 
 const httpLogger = winston.createLogger({
-    format: winston.format.json(),
-    transports: [
-        new winston.transports.File({ filename: './logs/http-requests.log',  flags: 'a' }),
-    ],
+  format: winston.format.json(),
+  transports: [
+    new winston.transports.File({ filename: './logs/http-requests.log',  flags: 'a' }),
+  ],
 });
 
 app.use(
-    morgan('combined', {
-        stream: {
-            write: (message) => {
-                httpLogger.info(message.trim());
-            },
-        },
-    })
+  morgan('combined', {
+    stream: {
+      write: (message) => {
+        httpLogger.info(message.trim());
+      },
+    },
+  })
 );
 
 
 app.listen(PORT, () => {
     console.log(`Server running in ${process.env.NODE_ENV} and listening on PORT ${PORT}`.blue)
-})
+  })
 
 app.get('/', (req, res) => {
     httpLogger.info(`HTTP ${req.method} ${req.url}`);
@@ -43,4 +43,5 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/models/', modelRoutes)
+
 

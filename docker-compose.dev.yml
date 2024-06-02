@@ -7,7 +7,7 @@ services:
     - 80:80
    restart: always
    env_file:
-    - "frontend.env"
+    - "frontend/frontend.env"
    networks:
     - front-tier
     - back-tier
